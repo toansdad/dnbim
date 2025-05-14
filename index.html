@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=1280" name="viewport"/>
+<title>DnBim</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Righteous&family=Rubik+Mono+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@300;400;700&family=Bungee&family=Poppins:wght@300;400;700&display=swap');
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* Ensure minimum height is full viewport height */
+            background: linear-gradient(135deg, #FFF8DC, #FAE68C, #F4A460, #8B5A2B); /* Move gradient to body */
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: linear-gradient(to right,
+                #213345 0%,
+                #213345 25%,
+                #213345 75%,
+                #213345 100%
+            );
+            color: #d0f0c0;
+        }
+        nav a {
+            font-family: 'Bungee', cursive;
+            margin: 0 15px;
+            color: #d0f0c0;
+            text-decoration: none;
+            font-weight: 100;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+        }
+        nav a:hover {
+            color: #d0f0c0;
+        }
+        .dropbtn {
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Bungee', cursive;
+            font-weight: 100;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            min-width: 220px;
+            z-index: 1;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            border-radius: 5px;
+        }
+        .dropdown-content a {
+            color: #d0f0c0;
+            background-color: #213345;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            transform: translateX(-10px);
+            opacity: 1;
+            border-radius: 0;
+        }
+        .dropdown:hover .dropdown-content a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .hero {
+            background-color: #e3cd9f; /*màu nền đoạn header*/
+            color: #fff;
+            text-align: left;
+            padding: 80px 10%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero img {
+            max-width: 400px;
+            border-radius: 20px;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 50px 10%;
+            background-color: #333;
+        }
+        .card {
+            background-color: #444;
+            padding: 20px;
+            flex: 1;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+        .mid-section {
+            /* Remove the background gradient from here since it's now on body */
+            padding: 100px 10%;
+            text-align: center;
+            min-height: 100vh; /* Make section at least full viewport height */
+            position: relative; /* For proper stacking context */
+            z-index: 1; /* Ensure content stays above background */
+        }
+        .mid-section h2 {
+            font-family: 'Lobster', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .mid-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .mid-section .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .mid-section .feature {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 300px;
+            text-align: left;
+        }
+        .mid-section .feature img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+        .mid-section .feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .mid-section .feature p {
+            font-size: 1em;
+        }
+        .title-card {
+            background: linear-gradient(135deg, #1A0033, #3A1C71); /* Gradient tím */
+            color: #E8CBA4; /* Màu chữ vàng nhạt */
+            padding: 10px 10px;
+            border-radius: 15px; /* Bo góc */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            max-width: 800px;
+            text-align: left;
+            margin: -50px auto 20px auto; /* Center the title card */
+            position: relative; /* Ensure the snow effect stays inside */
+            overflow: hidden; /* Ensure the snow effect stays inside */
+        }
+        .title-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            background: #E8CBA4;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
+        }
+        .snowflake:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .snowflake:nth-child(2) {
+            left: 20%;
+            animation-delay: 1s;
+        }
+        .snowflake:nth-child(3) {
+            left: 30%;
+            animation-delay: 2s;
+        }
+        .snowflake:nth-child(4) {
+            left: 40%;
+            animation-delay: 3s;
+        }
+        .snowflake:nth-child(5) {
+            left: 50%;
+            animation-delay: 4s;
+        }
+        .snowflake:nth-child(6) {
+            left: 60%;
+            animation-delay: 5s;
+        }
+        .snowflake:nth-child(7) {
+            left: 70%;
+            animation-delay: 6s;
+        }
+        .snowflake:nth-child(8) {
+            left: 80%;
+            animation-delay: 7s;
+        }
+        .snowflake:nth-child(9) {
+            left: 90%;
+            animation-delay: 8s;
+        }
+        @keyframes fall {
+            0% {
+                top: -10px;
+                opacity: 0.8;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+        .icon {
+            width: 200px; /* Increase the size of the icon */
+            height: auto;
+        }
+        .combined-card, .combined-card2, .combined-card3, .combined-card4 {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Adjusted gap for better visibility */
+            width: 1000px;
+            padding: 40px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2); /* Nền trong suốt */
+            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Đổ bóng nhẹ */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Viền mờ nhẹ */
+            text-align: justify; /* Align text to be justified */
+           
+            margin-top: 150px; /* Move the card down */
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+
+        /* Improve image styling */
+        .image-border1 {
+            flex: 0 0 400px; /* Fixed width for images */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-border1 img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-border1:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Improve text content */
+        .glass-card1 {
+            flex: 10;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            padding: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .combined-card, .combined-card2, .combined-card3, .combined-card4 {
+                width: 90%;
+                flex-direction: column;
+            }
+
+            .image-border1 {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+
+        .combined-card:hover, .combined-card2:hover, .combined-card3:hover, .combined-card4:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        .combined-card2, .combined-card4 {
+            margin-top: 100px; /* Gap of 100px */
+            margin-left: 100px; /* Move the card to the right by 100px */
+        }
+        .combined-card3 {
+                margin-top:10px;
+        }
+        .combined-card2 {
+                margin-top:10px;
+        }
+        .combined-card4 {
+                margin-top:10px;
+        }
+        .image-border1 {
+            background: linear-gradient(135deg, #FFD700, #F4A460, #8B5A2B); /* Gradient vàng */
+            padding: 15px; /* Độ dày của viền */
+            border-radius: 20px; /* Bo góc */
+            display: inline-block; /* Giúp div ôm sát nội dung */
+        }
+        .image-border1 img {
+            display: block;
+            width: 300px; /* Điều chỉnh kích thước ảnh */
+            height: auto;
+            border-radius: 15px; /* Bo góc ảnh để khớp với viền */
+        }
+        .centered-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 250px;
+            position: relative;
+        }
+        .centered-image img {
+            position: absolute;     /* Tạo vị trí tuyệt đối */
+            max-width: 100%;
+            height: auto;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2); /* Nền trong suốt */
+            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Đổ bóng nhẹ */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Viền mờ nhẹ */
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 400px;
+            position: absolute;
+            text-align: center; /* Center text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure the effect stays inside the card */
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+            pointer-events: none; /* Ensure the effect does not interfere with interactions */
+        }
+        @keyframes shine {
+            0% {
+                left: -75%;
+            }
+            100% {
+                left: 125%;
+            }
+    }
+        .glass-card.left-1 {
+            top: -120px;
+            left: -100px;
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.left-2 {
+            top: -20px;
+            left: -100px;
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.left-3 {
+            top: -20px;
+            left: -100px;
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.right-1 {
+            top: -170px;
+            right: -100px;
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+            display: flex;
+            align-items: center;
+        }
+        .glass-card.right-2 {
+            top: -70px;
+            right: -100px;
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+            align-items: center;
+        }
+        .glass-card.right-3 {
+            top: 30px;
+            right: -100px;
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.below-1 {
+            top: 220px; /* Position below the BIM image */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.below-2 {
+            top: 300px; /* Position below the first below card */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.below-3 {
+            top: 380px; /* Position below the second below card */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            font-size:14px;
+        }
+        .glass-card.left-1, .glass-card.left-2, .glass-card.right-1, .glass-card.right-2, .glass-card.right-3, .glass-card.below-1, .glass-card.below-2, .glass-card.below-3 {
+            
+            align-items:  stretch ;
+            align-items: center;
+            background: linear-gradient(135deg, #1A0033, #3A1C71); /* Gradient tím */
+            color: #E8CBA4; /* Màu chữ vàng nhạt */
+            padding: 10px 20px;
+            border-radius: 15px; /* Bo góc */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+        @media (max-width: 1200px) {
+            .glass-card {
+                position: static;
+                margin: 10px 0;
+            }
+            .centered-image {
+                flex-direction: column;
+            }
+        }
+        .below-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Default gap between images */
+            margin-top: 500px;
+        }
+        .below-images img {
+            width: 90%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 5px solid white; /* Add white outline */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .below-images img[alt="Image 5"] {
+            width: 90%;
+            height: 200px; /* Adjust this value as needed */
+            object-fit: cover; /* This ensures the image maintains its aspect ratio */
+        }
+        .below-images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .below-images .image5 {
+            margin-top: 0; /* Set gap between image5 and image4 to 0 */
+        }
+        footer {
+            background-color: #FFD700;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        #model-container {
+            width: 100%;
+            height: 500px;
+            background-color: #f4f4f4;
+        }
+        #dwg-viewer {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        .large-text {
+            font-size: 2em; /* 3 times the normal size */
+        }
+        .large-header {
+            font-size: 2em; /* 2 times the normal size */
+        }
+        .large-card {
+            flex: 5; /* 5 times the normal size */
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+        background: linear-gradient(to right,
+            #213345 0%,
+            #213345 25%,
+            #213345 75%,
+            #213345 100%
+        );
+        color: #d0f0c0;
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .dropdown {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .dropdown-content {
+        position: relative;
+        width: 100%;
+        transform: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+        position: relative;
+        width: 100%;
+    }
+
+    .dropbtn {
+        width: 100%;
+        padding: 10px;
+    }
+
+    section, .text-box, .info-box, .content-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px !important;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    .info-section, .box, .highlight-area, .feature-block {
+        background-color: #fff6d5 !important; /* Màu vàng nhạt nền tổng thể */
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .row, .column, .text, .image-box {
+        width: 100% !important;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    .number-box, .scholarship-box {
+        width: 100% !important;
+        background-color: #e8e8e8 !important;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .section-title, h2, h3 {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+  }
+
+  section, .info-box, .box, .row, .column {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    background-color: inherit;
+    box-sizing: border-box;
+  }
+
+  .footer, footer {
+    width: 100%;
+    background-color: #1c2d3a !important;
+    color: #cfeec9;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  body, html {
+    background-color: #fff6d5 !important;
+  }
+
+  section, .text-box, .info-box, .box, .highlight-area {
+    background-color: #fff6d5 !important;
+    width: 100% !important;
+    max-width: 100%;
+    padding: 20px !important;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-box img, .box img, .highlight-area img {
+    margin: 10px auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .info-box p, .box p, .highlight-area p {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 0 10px;
+  }
+}
+        .text-box {
+            width: 400px;
+            height: 50px;
+            margin: 40px auto;
+            padding: 10px;
+            background: #FFD700;
+            border: 3px solid #8B5A2B; /* Add golden brown border */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .embed-link {
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 3px solid #8B5A2B; /* Match the text-box border */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .embed-link iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 5px;
+        }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <div style="font-family: 'Orbitron',sans-serif ; font-size: 2em; font-weight: 900;">DNBIM</div>
+    <nav>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">TRANG CHỦ</a>
+            <div class="dropdown-content">
+                <a href="lmao.html" target="_blank">Lộ Trình Học</a>
+            </div>  
+        </div>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">TÀI LIỆU</a>
+            <div class="dropdown-content">
+                <a href="#docs1">Tài liệu học tập</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">DNBIM</a>
+            <div class="dropdown-content">
+                <a href="#about">Giới thiệu</a>
+                <a href="#team">Đội ngũ</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">KHÓA HỌC</a>
+            <div class="dropdown-content">
+                <a href="#about">BIM TOOL 1</a>
+                <a href="#team">BIM TOOL 2</a>
+                <a href="#contact">BIM TOOL 3</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="hero">
+<div class="hero-content">
+<h1 class="large-header" id="typing-header" style="color: black; font-family: 'Bungee', cursive; font-weight: 900;"></h1>
+<p class="large-text" id="typing-text" style="color: black; font-family: 'Bungee', cursive;"></p>
+</div>
+<img alt="Student Image" src="student.jpg"/>
+</section>
+<script>
+        function typeWriter(element, text, speed, callback) {
+            let i = 0;
+            element.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    setTimeout(callback, 1000);
+                }
+            }
+            type();
+        }
+        
+        function startTyping() {
+            typeWriter(document.getElementById("typing-header"), "DNBIM MEP CENTER PROFILE", 100, function() {
+                typeWriter(document.getElementById("typing-text"), "DnBIM MEP – XÂY KIẾN THỨC, DỰNG TƯƠNG LAI", 100, function() {
+                    setTimeout(() => {
+                        document.getElementById("typing-header").innerHTML = "";
+                        document.getElementById("typing-text").innerHTML = "";
+                        setTimeout(startTyping, 1000);
+                    }, 2000);
+                });
+            });
+        }
+        
+        document.addEventListener("DOMContentLoaded", startTyping);
+    </script>
+<div class="card-container">
+<div class="card animate-on-scroll">
+<img alt="Evaluation" src="icon1.png"/>
+<h3 style="color: white;">Thời gian đánh giá</h3>
+<p style="color: white;">Nhanh chóng và chính xác</p>
+</div>
+<div class="card animate-on-scroll">
+<img alt="Giáo viên được chứng nhận" src="icon2.png"/>
+<h3 style="color: white;">Giáo viên được chứng nhận</h3>
+<p style="color: white;">Đội ngũ giáo viên chuyên nghiệp</p>
+</div>
+<div class="card animate-on-scroll">
+<img alt="Thư viện sách" src="icon3.png"/>
+<h3 style="color: white;">Thư viện sách</h3>
+<p style="color: white;">Hơn 10,000 đầu sách</p>
+</div>
+</div>
+<section class="education-section">
+</section>
+<section class="mid-section">
+<div class="title-card animate-on-scroll">
+<img alt="Icon" class="icon" src="icon.png"/>
+<h2>CHÀO MỪNG ĐẾN VỚI TRUNG TÂM ĐÀO TẠO PHẦN MỀM DNBIM MEP</h2>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+</div>
+<div class="combined-card animate-on-scroll">
+<div class="glass-card1">
+                Trong bối cảnh ngành xây dựng ngày càng phát triển, nhu cầu về kỹ sư giỏi, giàu kinh nghiệm luôn là thách thức lớn đối với doanh nghiệp. Tuy nhiên, không phải kỹ sư mới ra trường nào cũng có thể đáp ứng ngay các yêu cầu thực tế của công việc.
+            </div>
+<div class="image-border1">
+<img alt="Example Image" src="example1.jpg"/>
+</div>
+</div>
+<div class="combined-card2 animate-on-scroll">
+<div class="image-border1">
+<img alt="Example Image" src="example2.jpg"/>
+</div>
+<div class="glass-card1">
+                Hiểu được điều đó, DnBIM MEP ra đời với sứ mệnh đào tạo và cung cấp nguồn nhân lực kỹ sư chất lượng cao, giúp họ nhanh chóng thích nghi với môi trường làm việc chuyên nghiệp. Chúng tôi không chỉ trang bị kiến thức chuyên môn mà còn rèn luyện kỹ năng thực hành, giúp học viên tự tin đồng hành cùng các doanh nghiệp trong và ngoài nước.
+            </div>
+</div>
+<div class="combined-card3 animate-on-scroll">
+<div class="glass-card1">
+                Là một trong những trung tâm đào tạo hàng đầu, DnBIM MEP cung cấp các khóa học chuyên sâu về HVAC, Fire Fighting, Plumbing, Electrical, cùng với các công cụ BIM (Building Information Modeling) tiên tiến nhất.
+            </div>
+<div class="image-border1">
+<img alt="Example Image" src="example3.jpg"/>
+</div>
+</div>
+<div class="combined-card4 animate-on-scroll">
+<div class="image-border1">
+<img alt="Example Image" src="example4.jpg"/>
+</div>
+<div class="glass-card1">
+                Chúng tôi cam kết không ngừng đổi mới, cập nhật những công nghệ hiện đại nhất, trở thành cầu nối vững chắc giữa học viên và doanh nghiệp, giúp học viên có cơ hội tiếp cận với những dự án thực tế ngay trong quá trình đào tạo.
+            </div>
+</div>
+<div class="centered-image">
+<div class="glass-card left-1 card animate-on-scroll">
+<p>Các phần mềm để xây dựng mô hình BIM</p>
+</div>
+<div class="glass-card left-2 card animate-on-scroll">
+<p>Khái niệm, quy trình xây dựng BIM theo tiêu chuẩn ISO</p>
+</div>
+<div class="glass-card right-1 card animate-on-scroll">
+<p>Thiết kế hệ thống thông gió và điều hòa không khí</p>
+</div>
+<div class="glass-card right-2 card animate-on-scroll">
+<p>Thiết kế hệ thống phòng cháy chữa cháy</p>
+</div>
+<div class="glass-card right-3 card animate-on-scroll">
+<p>Thiết kế hệ thống cấp thoát nước</p>
+</div>
+<img alt="BIM Image" src="bim.png"/>
+<div class="glass-card below-1 card animate-on-scroll">
+<p>Quản lý dự án thi công</p>
+</div>
+<div class="glass-card below-2 card animate-on-scroll">
+<p>Quản lý dự án thiết kế</p>
+</div>
+<div class="glass-card below-3 card animate-on-scroll">
+<p>Quản lý dự án xây dựng mô hình thông tin (BIM)</p>
+</div>
+</div>
+<div class="below-images">
+<img alt="Image 1" src="image1.jpg"/>
+<img alt="Image 2" src="image2.jpg"/>
+<img alt="Image 3" src="image3.jpg"/>
+<img alt="Image 4" src="image4.jpg"/>
+<img alt="Image 5" src="image5.jpg"/>
+<img alt="Image 6" src="image6.jpg"/>
+<img alt="Image 7" src="image7.jpg"/>
+<img alt="Image 8" src="image8.jpg"/>
+<img alt="Image 9" src="image9.jpg"/>
+<img alt="Image 10" src="image10.jpg"/>
+<img alt="Image 12" src="image12.jpg"/>
+</div>
+<!-- Duplicate title-card below image12 -->
+<div class="title-card animate-on-scroll" style="margin-top: 50px;">
+<img alt="Icon" class="icon" src="icon.png"/>
+<h2>SẢN PHẨM DỰ ÁN THỰC TẾ CỦA HỌC VIÊN DNBIM MEP
+                ĐÃ THAM GIA VÀ THỰC HIỆN</h2>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+</div>
+<!-- Add two text boxes below the duplicated title-card -->
+<div class="text-box animate-on-scroll" style="width: 400px; height: 50px; margin: auto; padding: 10px; background: yellow; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; color: black; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700;">
+<p style="margin: 0;">MÔ HÌNH BIM HỆ THỐNG ĐIỆN</p>
+</div>
+<!-- Embed the link below Text Box 1 -->
+<div class="embed-link animate-on-scroll" style="margin-top: 40px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<iframe allowfullscreen="" frameborder="0" height="600px" src="https://gmail2546678.autodesk360.com/g/shares/SH30dd5QT870c25f12fc2401e0f75bd33735" width="100%"></iframe>
+</div>
+<div class="text-box animate-on-scroll" style="width: 400px; margin-top: 40px auto; height: 50px; margin: auto; padding: 10px; background: yellow; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; color: black; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700;">
+<p style="margin: 0;">MÔ HÌNH BIM NHÀ MÁY XỬ LÝ NƯỚC THẢI</p>
+</div>
+<!-- Embed the new link below Text Box 2 -->
+<div class="embed-link animate-on-scroll" style="margin-top: 40px auto; padding: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<iframe allowfullscreen="" frameborder="0" height="600px" src="https://gmail2546678.autodesk360.com/g/shares/SH30dd5QT870c25f12fce024e3f4d712fb64" width="100%"></iframe>
+</div>
+<!-- Add Text Box 3 below the second link -->
+<div class="text-box animate-on-scroll" style="width: 400px; margin-top: 40px auto; height: 50px; margin: auto; padding: 10px; background: yellow; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; color: black; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700;">
+<p style="margin: 0;">MÔ HÌNH BIM HỆ THỐNG CẤP THOÁT NƯỚC</p>
+</div>
+<!-- Embed the new link below Text Box 3 -->
+<div class="embed-link animate-on-scroll" style="margin-top: 40px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<iframe allowfullscreen="" frameborder="0" height="600px" src="https://gmail2546678.autodesk360.com/g/shares/SH30dd5QT870c25f12fce024e3f4d712fb64" width="100%"></iframe>
+</div>
+</section>
+<div class="card-container">
+<!-- New blank card container -->
+<div class="card large-card animate-on-scroll">
+<h3 style="color: white;">New Card</h3>
+<p style="color: white;">This is a new blank card.</p>
+</div>
+</div>
+<footer>
+<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 40px 10%; background-color: #333; color: white;">
+<div style="flex: 1;">
+<h3 style="font-family: 'Lobster', cursive; font-size: 1.5em;">DnBim</h3>
+<p>© 2024 DnBim. Mọi quyền được bảo lưu.</p>
+</div>
+<div style="flex: 1; text-align: center;">
+<a href="#" style="margin: 0 10px; color: white; text-decoration: none;">Privacy Policy</a>
+<a href="#" style="margin: 0 10px; color: white; text-decoration: none;">Terms of Service</a>
+<a href="#" style="margin: 0 10px; color: white; text-decoration: none;">Contact Us</a>
+</div>
+<div style="flex: 1; text-align: right;">
+<a href="https://www.facebook.com/profile.php?id=100083281565411" style="margin: 0 10px;"><img alt="Facebook" src="facebook-icon.png" style="width: 24px;"/></a>
+<a href="#" style="margin: 0 10px;"><img alt="Zalo" src="zalo-icon.png" style="width: 24px;"/></a>
+</div>
+</div>
+</footer>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('model-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            const light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(1, 1, 1).normalize();
+            scene.add(light);
+
+            const loader = new THREE.OBJLoader();
+            loader.load('model.obj', function(object) { // Ensure 'model.obj' is in the same directory as your HTML file
+                scene.add(object);
+                object.position.set(0, 0, 0);
+                object.scale.set(0.1, 0.1, 0.1);
+                console.log('Model loaded successfully');
+            }, undefined, function(error) {
+                console.error('An error happened', error);
+            });
+
+            camera.position.z = 5;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            }
+            animate();
+        });
+
+        // Intersection Observer for animate-on-scroll
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.style.animation = 'fadeIn 1s forwards';
+                } else {
+                    entry.target.classList.remove('visible');
+                    entry.target.style.animation = 'fadeOut 1s forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            observer.observe(element);
+        });
+
+            // // Chặn chuột phải
+            // document.addEventListener("contextmenu", function (event) {
+            //     event.preventDefault();
+            //     alert("BIẾT ÔNG LIÊM KHÔNG? ");
+            // });
+
+            // // Chặn F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            // document.addEventListener("keydown", function (event) {
+            //     if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+            //         event.preventDefault();
+            //     }
+            //     if (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) {
+            //         event.preventDefault();
+            //     }
+            //     if (event.key === "F12") {
+            //         event.preventDefault();
+            //     }
+            // });
+    </script>
+</body>
+</html>

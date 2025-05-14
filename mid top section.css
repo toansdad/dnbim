@@ -1,0 +1,33 @@
+body {
+    background-color: #F5F5F5; /* Màu nền tổng thể */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.title-card {
+    background: linear-gradient(135deg, #1A0033, #3A1C71); /* Gradient tím */
+    color: #E8CBA4; /* Màu chữ vàng nhạt */
+    padding: 20px 40px;
+    border-radius: 15px; /* Bo góc */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 800px;
+    text-align: left;
+}
+
+.title-card h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.icon {
+    width: 60px; /* Điều chỉnh kích thước icon */
+    height: auto;
+}
